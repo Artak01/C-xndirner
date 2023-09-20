@@ -182,3 +182,44 @@ int main()
         std::cout << "No";
     return 0;
 }
+
+
+10. Գրել ծրագիր, որը օգտվողին թույլ կտա մուտքագրել ինդեքս և տպել էկրանին Ֆիբոնաչիի հաջորդականության առաջին տարրից մինչև 
+    մուտքագրված ինդեքսին համապատասխանող տարրը:
+
+    #include <iostream>
+
+int main(){
+
+    int num = 0;
+    int l = 1;
+    int r = 1;
+    int tmp = l + r;
+    
+
+    std::cout << "Enter the number: ";
+    std::cin >> num;
+   
+   int arr[num];
+    arr[0] = arr[1] = 1;
+
+    if (num == 1){
+        std::cout << "1";
+    } 
+    else{
+        for (int i = 2; i != num ; ++i){
+            l = r;
+            r = tmp;
+            arr[i] = tmp;
+            tmp = r + l;
+        }   
+    
+        for(int i = 0; i < num; ++i){
+            std::cout << arr[i] << " ";
+        }
+    }
+    std::cout << std::endl;
+
+    return 0;
+}
+
