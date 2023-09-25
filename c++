@@ -184,7 +184,7 @@ int main()
 }
 
 
-10. Գրել ծրագիր, որը օգտվողին թույլ կտա մուտքագրել ինդեքս և տպել էկրանին Ֆիբոնաչիի հաջորդականության առաջին տարրից մինչև 
+11. Գրել ծրագիր, որը օգտվողին թույլ կտա մուտքագրել ինդեքս և տպել էկրանին Ֆիբոնաչիի հաջորդականության առաջին տարրից մինչև 
     մուտքագրված ինդեքսին համապատասխանող տարրը:
 
     #include <iostream>
@@ -223,3 +223,140 @@ int main(){
     return 0;
 }
 
+12.Գրել ծրագիր, որը օգտվողին թույլ կտա մուտքագրել թիվ և հաշվել այդ թվի թվանշանների գումարը։
+
+
+    #include <iostream>
+
+int main()
+{
+    int num = 0;
+    int sum = 0;
+    std::cout << "Enter the number: ";
+    std::cin >> num;
+    
+    int x = num;
+    while(x != 0){
+        sum+=x%10;
+        x = x/10;
+    }
+    std::cout << sum;
+    
+    return 0;
+}
+
+
+13.Գրել ծրագիր, որը օգտվողին թույլ կտա մուտքագրել թիվ և էկրանին տպել մուտքագրված թվի reverse տարբերակը (Օր․՝ 1234 -> 4321)։
+
+    #include <iostream>
+
+int main()
+{
+    int num = 0;
+    std::cout << "Enter the number: ";
+    std::cin >> num;
+    int rev = 0;
+    while(num != 0){
+        rev = rev * 10 + num%10;
+        num = num/10;
+    }
+    std::cout << rev;
+    return 0;
+}
+
+
+
+14.Գրել ծրագիր, որը օգտվողին թույլ կտա մուտքագրել թիվ և պարզել արդյո՞ք թիվը պարզ է, թե ոչ։
+
+    int num;
+    bool parz;
+    std::cout << "enter the number: ";
+    std::cin >> num;
+    for (int i = 2; i < num; i++)
+    {
+      if(num % i == 0)
+      {
+          parz = false;
+          break;
+      }
+      else
+          parz = true;
+    }
+    if (parz) {
+        std::cout << num << " is a prime number." << std::endl;
+    } else {
+        std::cout << num << " is not a prime number." << std::endl;
+    }
+
+15.Գրել ծրագիր, որը օգտվողին թույլ կտա մուտքագրել թիվ և պարզել արդյո՞ք թիվը 3֊ի աստիճան է, թե ոչ։
+
+    #include <iostream>
+
+int main()
+{
+    int num;
+    std::cout << "Enter a number: ";
+    std::cin >> num;
+    if (num <= 0) {
+        std::cout << num << " is not a power of 3." << std::endl;
+    } else {
+        while (num % 3 == 0) {
+            num /= 3;
+        }
+        if (num == 1) {
+            std::cout << "The entered number is a power of 3." << std::endl;
+        } else {
+            std::cout << "The entered number is not a power of 3." << std::endl;
+        }
+    }
+    return 0;
+}
+
+16. Գրել ծրագիր, որը օգտվողին թույլ կտա մուտքագրել թիվ և պարզել արդյո՞ք թվի երկուական տեսքի ավագ և կրտսեր բիթերը համընկնում են, թե ոչ։
+
+
+
+
+
+
+
+
+    17.Գրել ծրագիր, որը օգտվողին թույլ կտա մուտքագրել 0-ից 7 թվերից որևէ մեկը, և տպել էկրանին մուտքագրված թվին համապատասխանող 
+    շաբաթվա օրը։
+
+
+    #include <iostream>
+
+int main()
+{
+    int day;
+    
+    do{
+        std::cout << "Enter a number: ";
+        std::cin >> day;
+    }while(day < 0 || day >= 7);
+    switch (day) {
+  case 1:
+    std::cout << "Monday";
+    break;
+  case 2:
+    std::cout << "Tuesday";
+    break;
+  case 3:
+    std::cout << "Wednesday";
+    break;
+  case 4:
+    std::cout << "Thursday";
+    break;
+  case 5:
+    std::cout << "Friday";
+    break;
+  case 6:
+    std::cout << "Saturday";
+    break;
+  case 7:
+    std::cout << "Sunday";
+    break;
+    }
+    return 0;
+}
