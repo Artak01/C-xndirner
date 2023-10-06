@@ -1,0 +1,130 @@
+#include <iostream>
+
+int isPrime(int a){
+    for (int i = 2; i <= a / 2; ++i){
+        if (a % i == 0){
+            return 0;
+        }
+    }
+    return 1;
+}
+
+int main()
+{
+    int num = 0;
+    std::cin >> num;
+    
+    unsigned int counter = 0;
+    for (int i = 2; i < num; ++i){
+        if (isPrime(i)){
+            ++counter;
+        }
+    }
+
+    int* ptr = new int[counter];
+
+    int index = 0;
+    for (int i = 2; i < num; ++i){
+        if (isPrime(i)){
+            ptr[index++] = i;
+        }
+    }
+
+    for (int i = 0; i < counter; ++i){
+        std::cout <<  ptr[i] << " ";
+    }
+    delete [] ptr;
+}
+
+
+
+matric zug 2, kent 1
+
+
+  #include <iostream>
+
+int main()
+{
+    int n = 0;
+    int m = 0;
+    std::cout << "n = ";
+    std::cin >> n;
+    std::cout << "m = ";
+    std::cin >> m;
+    
+    int** mat = new int*[n];
+    for(int i = 0; i < n; ++i){
+        mat[i] = new int[m];
+    }
+    
+    for(int i = 0; i < n; ++i){
+        for(int j = 0; j < n; ++j){
+            if((i+j)%2 == 0){
+                mat[i][j] = 2;
+            }
+            else
+                mat[i][j] = 1;
+        }
+    }
+    
+    for(int i = 0; i < n; ++i){
+        for(int j = 0; j < n; ++j){
+          std::cout << mat[i][j] << " ";  
+        }
+        std::cout << "\n";
+    }
+    
+    for(int i = 0; i < n; ++i){
+       delete [] mat[i];
+    }
+    
+    delete mat;
+    return 0;
+}
+
+
+
+zuygy ajman karqov kenty navzman
+
+
+#include <iostream>
+
+int main()
+{
+    int n = 0;
+    int m = 0;
+    std::cout << "n = ";
+    std::cin >> n;
+    std::cout << "m = ";
+    std::cin >> m;
+    
+    int** mat = new int*[n];
+    for(int i = 0; i < n; ++i){
+        mat[i] = new int[m];
+    }
+    
+    for(int i = 0; i < n; ++i){
+        for(int j = 0; j < n; ++j){
+            if(i %2 == 0){
+                mat[i][j] = j+1;
+            }
+            else{
+                mat[i][j] = n-j;
+            }
+        }
+    }
+    
+    for(int i = 0; i < n; ++i){
+        for(int j = 0; j < n; ++j){
+          std::cout << mat[i][j] << " ";  
+        }
+        std::cout << "\n";
+    }
+    
+    for(int i = 0; i < n; ++i){
+       delete [] mat[i];
+    }
+    
+    delete mat;
+    return 0;
+}
