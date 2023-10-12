@@ -128,3 +128,160 @@ int main()
     delete mat;
     return 0;
 }
+
+
+structuraa familyy
+
+#include <iostream>
+
+struct car{
+    std::string model;
+    int price;
+};
+
+struct person{
+    std::string name;
+    int age;
+    int cars_count;
+    car* cars;
+};
+
+struct family{
+    person* persons;
+    int person_count;
+};
+
+int main()
+{
+    int count = 0;
+    std::cout << "Family count: ";
+    std::cin >> count;
+    
+    family* fam = new family[count];
+    
+    for(int i = 0; i < count; ++i){
+        std::cout << "Person count: ";
+        std::cin >> fam[i].person_count;
+        fam[i].persons = new person[fam[i].person_count];
+        
+        for(int j = 0; j < fam[i].person_count; ++j){
+            std::cout << "Name: ";
+            std::cin >> fam[i].persons[j].name;
+            std::cout << "Age: ";
+            std::cin >> fam[i].persons[j].age;
+            std::cout << "Cars count: ";
+            std::cin >> fam[i].persons[j].cars_count;
+            fam[i].persons[j].cars = new car[fam[i].persons[j].cars_count];
+            
+            for(int k = 0; k < fam[i].persons[j].cars_count; ++k){
+                std::cout << "Model: ";
+                std::cin >> fam[i].persons[j].cars[k].model;
+                std::cout << "Price: ";
+                std::cin >> fam[i].persons[j].cars[k].price;
+            
+            }
+        }
+    }
+    
+    for(int i = 0; i < count; ++i){
+        for(int j = 0; j < fam[i].person_count; ++j){
+            for(int k = 0; k < fam[i].persons[j].cars_count; ++k){
+                if (fam[i].persons[j].age < 18){
+                    delete  fam[i].persons[j].cars;
+                }
+            }
+        }
+    }
+    
+    for(int i = 0; i < count; ++i){
+        for(int j = 0; j < fam[i].person_count; ++j){
+            for(int k = 0; k < fam[i].persons[j].cars_count; ++k){
+                std::cout << "\nname:-> " << fam[i].persons[j].name << "\nage:-> " <<
+                fam[i].persons[j].age << "\nmodel:-> " << fam[i].persons[j].cars[k].model
+                << "\nprice:-> " << fam[i].persons[j].cars[k].price;
+            }
+        }
+    }
+    
+    delete [] fam;
+    return 0;
+}
+
+
+
+parz tver dymenic arrayaa
+
+#include <iostream>
+
+struct car{
+    std::string model;
+    int price;
+};
+
+struct person{
+    std::string name;
+    int age;
+    int cars_count;
+    car* cars;
+};
+
+struct family{
+    person* persons;
+    int person_count;
+};
+
+int main()
+{
+    int count = 0;
+    std::cout << "Family count: ";
+    std::cin >> count;
+    
+    family* fam = new family[count];
+    
+    for(int i = 0; i < count; ++i){
+        std::cout << "Person count: ";
+        std::cin >> fam[i].person_count;
+        fam[i].persons = new person[fam[i].person_count];
+        
+        for(int j = 0; j < fam[i].person_count; ++j){
+            std::cout << "Name: ";
+            std::cin >> fam[i].persons[j].name;
+            std::cout << "Age: ";
+            std::cin >> fam[i].persons[j].age;
+            std::cout << "Cars count: ";
+            std::cin >> fam[i].persons[j].cars_count;
+            fam[i].persons[j].cars = new car[fam[i].persons[j].cars_count];
+            
+            for(int k = 0; k < fam[i].persons[j].cars_count; ++k){
+                std::cout << "Model: ";
+                std::cin >> fam[i].persons[j].cars[k].model;
+                std::cout << "Price: ";
+                std::cin >> fam[i].persons[j].cars[k].price;
+            
+            }
+        }
+    }
+    
+    for(int i = 0; i < count; ++i){
+        for(int j = 0; j < fam[i].person_count; ++j){
+            for(int k = 0; k < fam[i].persons[j].cars_count; ++k){
+                if (fam[i].persons[j].age < 18){
+                    delete  fam[i].persons[j].cars;
+                }
+            }
+        }
+    }
+    
+    for(int i = 0; i < count; ++i){
+        for(int j = 0; j < fam[i].person_count; ++j){
+            for(int k = 0; k < fam[i].persons[j].cars_count; ++k){
+                std::cout << "\nname:-> " << fam[i].persons[j].name << "\nage:-> " <<
+                fam[i].persons[j].age << "\nmodel:-> " << fam[i].persons[j].cars[k].model
+                << "\nprice:-> " << fam[i].persons[j].cars[k].price;
+            }
+        }
+    }
+    
+    delete [] fam;
+    return 0;
+}
