@@ -260,4 +260,111 @@ int main()
     return 0;
 }
 
+1.Ստեղծեք Book անունով ստրուկտուրա, որը պարունակում է տեղեկատվություն գրքի մասին՝ ներառյալ նրա անվանումը (char array), հեղինակը (char array) և հրատարակման տարեթիվը (int):
+
+Գրեք ֆունկցիա, որը մուտքագրում է  որը կարժեքավորի զանգվածի էլեմենտները մասնավորապես օբյեկտի անունը, հեղինակի անունը և հրատարակման տարեթիվը։ 
+
+
+Գրեք ֆունկցիա, որը ստանում է արժեքավորված struct-երի զանգված և գտնում է  այն գրքերի անունները որոնք սկսվում են ‘A’-ով։
+
+#include <stdio.h>
+#include <stdlib.h>
+
+
+struct book
+{
+    char name[20];
+    char hname[20];
+    int year;
+};
+
+void scan(struct book* arr, int size){
+    
+    for(int i = 0; i < size; ++i){
+        printf("Enter book name: ");
+        scanf("%s", arr[i].name);
+        printf("Enter author name: ");
+        scanf("%s", arr[i].hname);
+        printf("Year of publication: ");
+        scanf("%d", &arr[i].year);
+    }
+
+}
+
+void letter(struct book* arr, int size){
+    for(int i = 0; i < size; ++i){
+        if(arr[i].name[0] == 'A'){
+            printf("%s\n",arr[i].name );
+        }
+    }
+}
+
+int main()
+{
+    int size = 0;
+    printf("Size: ");
+    scanf("%d", &size);
+    
+    struct book* arr = (struct book*)calloc(size, sizeof(struct book));
+    scan(arr, size);
+    printf("\n");
+    letter(arr,size);
+    
+    return 0;
+}
+
+
+2.Ստեղծեք «Car» անունով ստրուկտուրա, որը պարունակում է տեղեկատվություն մեքենայի մասին, ներառյալ դրա ապրանքանիշը (char array), մոդելը (char array) և արտադրության տարեթիվը (int):
+
+Գրել ֆունկցիա, որը կարժեքավորի օբլեկտի էլեմենտները մասնավորապես մեքենայի ապրանքանիշը, մոդելը և  արտադրության տարեթիվը։
+
+
+Իրականացնել ֆունկցիա, որը ստանում է Car[]-երի զանգված, և վերադարձնում այն մեքենայի արտադրման տարեթիվը, երի ապրանքանիշը  “Mercedes” է։
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <cstring>
+
+//typedef struct Car Car;
+
+struct Car
+{
+    char brend[20];
+    char model[20];
+    int year;
+};
+
+void scan(struct Car* arr, int size)
+{
+    for(int i = 0; i < size; ++i){
+        printf("Enter the brend: ");
+        scanf("%s", arr[i].brend);
+        printf("Enter the model: ");
+        scanf("%s", arr[i].model);
+        printf("Enter the year: : ");
+        scanf("%d", &arr[i].year);
+    }
+}
+
+void test(struct Car* arr, int count){
+    for(int i = 0; i < count; ++i){
+        if( strcmp(arr[i].brend, "bmw") == 0){
+        printf("Year = %d", arr[i].year);
+        }
+    }
+}
+
+int main()
+{
+    int count = 0;
+    printf("Enter the count: ");
+    scanf("%d", &count);
+
+    struct Car* arr = (struct Car*)calloc(count, sizeof(struct Car));
+    scan(arr, count);
+    printf("\n");
+    test(arr, count);
+
+    return 0;
+}
 
