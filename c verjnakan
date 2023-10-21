@@ -368,3 +368,89 @@ int main()
     return 0;
 }
 
+
+
+
+
+3.Ստեղծել Person ստրուկտուրա, որը անձի մասին կպահի տվյալներ ([char տիպի զանգված]անուն, [char տիպի զանգված]ազգանուն, [int]տարիք և ծննդյան ամիս ամսաթիվ): Ծննդյան ամիս ամսաթիվը արտհայտել Date անունով ստրուկտուրայի միջոցով ստրուկտուրայի միջոցով ([int]օր, [int]ամիս և [int]տարի)։
+
+
+Հիմնվելով նախորդ խնդրում սհամանված Person ստրուկտուրայի վրա ստեղծել Person տիպի դինամիկ զանգված։ Գրել ֆունկցիա, որը կարժեքավորի զանգվածի էլեմենտները մասնավորապես օբյեկտի անունը, ազգանունը, և ծննդյան ամիս ամսաթվի օբյեկտը։
+ 
+   	 Գրել ֆունկցիա որը գտնում է զանգվածի մեջից տարիքով ամենա                մեծին և վերադարձնում է  օբյեկտը։ Տպել էկրանին վերադարձված օբյետի տվյալները։
+
+
+
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct Person Person;
+typedef struct Date Date;
+
+struct Date{
+    int day;
+    int munth;
+    int year;
+};
+
+struct Person{
+    char name[20];
+    char lastname[20];
+    Date date;
+};
+
+void scan(Person*, int);
+void max(Person*, int);
+void print(Person*, int);
+
+int main(){
+    
+    int count = 0;
+    printf("Enter person count: ");
+    scanf("%d", &count);
+    
+    Person* arr = (Person*)calloc(count, sizeof(Person));
+    scan(arr, count);
+    max(arr, count);
+
+    return 0;
+}
+
+void scan(Person* arr, int count){
+    for(int i = 0; i< count; ++i){
+        printf("\nEnter name: ");
+        scanf("%s", arr[i].name);
+        printf("Enter lastnem: ");
+        scanf("%s", arr[i].lastname);
+        printf("Enter day: ");
+        scanf("%d", &arr[i].date.day);
+        printf("Enter munth: ");
+        scanf("%d", &arr[i].date.munth);
+        printf("Enter year: ");
+        scanf("%d", &arr[i].date.year);
+    }
+
+}
+
+void max(Person* arr, int count){
+    int min = arr[0].date.year;
+    int k = 0;
+    for(int i = 0; i < count; ++i){
+        if(min > arr[i].date.year){
+            min = arr[i].date.year;
+            k = i;
+        }
+    }
+    print(arr, k);
+}
+
+void print(Person* arr, int k){
+    printf("\nThe oldest person!");
+    printf("\nName: %s\nLastname: %s\nDay: %d\nMunth: %d\nYear: %d\n", 
+    arr[k].name, arr[k].lastname, arr[k].date.day, arr[k].date.munth, arr[k].date.year);
+}
