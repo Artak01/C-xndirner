@@ -360,3 +360,410 @@ int main()
     }
     return 0;
 }
+
+
+Խնդիր 7. Զանգվածի հակադարձում
+Ստեղծեք ծրագիր, որը հակադարձում է ամբողջ թվային զանգվածի տարրերը և տպում հակադարձ զանգվածը:
+
+
+    #include <iostream>
+void find(int* arr, int size){
+    for(int i = 0; i < 5/2; ++i){
+        std::swap(arr[i],  arr[5-1-i]);         
+    }
+}
+
+void print(int* arr, int size){
+    for(int i = 0; i < 5; ++i){
+        std::cout << arr[i] << " ";     
+    }    
+    std::cout << std::endl;
+}
+
+int main()
+{
+    int arr[5] = {1,2,3,4,5};
+    print(arr, 5);
+    find(arr, 5);
+    print(arr, 5);
+    return 0;
+}
+
+
+
+Խնդիր 8. Զանգվածի կրկնօրինակման ստուգում
+Մշակեք ծրագիր, որը ստուգում է, թե արդյոք կան կրկնվող արժեքներ ամբողջ թվային զանգվածում: 
+Տպեք հաղորդագրություն, որը ցույց է տալիս կրկնօրինակների առկայությունը, թե ոչ:
+
+    #include <iostream>
+void find(int* arr, int size){
+    for(int i = 0; i < 4; ++i){
+        for(int j = i + 1; j < 5; ++j){
+            if (arr[i] == arr[j]){
+                std::cout << arr[i] << " ";         
+            }
+        }
+    }
+}
+
+
+int main()
+{
+    int arr[5] = {3,5,3,8,5};
+    find(arr, 5);
+    return 0;
+}
+
+
+Խնդիր 9. Պարզ թվեր զանգվածում
+Գրեք ծրագիր, որը նույնականացնում և տպում է բոլոր պարզ թվերը տվյալ ամբողջ թվով զանգվածում:
+
+    #include <iostream>
+bool find(int n){
+    for(int i = 2; i < n/2; ++i){
+        if (n % i){
+            return 0;
+        }
+    }
+    return 1;
+}
+
+
+int main()
+{
+    int arr[5] = {3,5,3,8,5};
+    for(int i = 0; i < 5; ++i){
+        if (find(arr[i])){
+        std::cout << arr[i] << "  ";
+        }
+    }
+    return 0;
+}
+
+
+
+Խնդիր 11. Գտնել կենտ կամ զույգ թվեր
+Գրեք ծրագիր, որը ամբողջ թվով զանգվածը բաժանում է երկու զանգվածի. մեկը կենտ թվեր է պարունակում, մյուսը՝ զույգ թվեր։ 
+    Տպեք երկու զանգվածները:
+
+    #include <iostream>
+
+void scan(int*, int);
+void print(int*, int);
+int even(int*, int);
+void creat(int*, int, int);
+void creat1(int*, int, int);
+
+int main() {
+    
+    int size = 0;
+    std::cout << "Enter the size: ";
+    std::cin >> size;
+    int* arr = new int[size];
+    scan(arr, size);
+    print(arr, size);
+    int ev = even(arr, size);
+    int odd = size - ev;
+    creat(arr, size, ev);
+    creat1(arr, size, odd);
+    
+    delete[] arr;
+    return 0;
+}
+
+void scan(int* arr, int size){
+    for(int i = 0; i < size; ++i){
+        arr[i] = rand()%10;
+    }
+}
+
+void print(int* arr, int size){
+    for(int i = 0; i < size; ++i){
+        std::cout << arr[i] << " ";
+    }
+     std::cout << std::endl;
+}
+
+int even(int* arr, int size){
+    int k = 0;
+    for(int i = 0; i < size; ++i){
+        if (arr[i] % 2 == 0){
+            k++;
+        }
+    }
+    return k;
+}
+
+void creat(int* arr, int size, int ev){
+    int* arr1 = new int[ev];
+    int k = 0;
+    for(int i = 0; i < size; ++i){
+        if (arr[i] % 2 == 0){
+            arr1[k++] = arr[i];
+        }
+    }
+    print(arr1, ev);
+    delete[] arr1;
+}
+
+void creat1(int* arr, int size, int odd){
+    int* arr2 = new int[odd];
+    int k = 0;
+    for(int i = 0; i < size; ++i){
+        if (arr[i] % 2 != 0){
+            arr2[k++] = arr[i];
+        }
+    }
+    print(arr2, odd);
+    delete[] arr2;
+}
+
+
+Problem 12: Second Largest Element
+Create a program that finds and prints the second largest element in an integer array.
+
+    #include <iostream>
+
+void scan(int*, int);
+void print(int*, int);
+int smax(int*, int);
+
+int main() {
+    
+    int size = 0;
+    std::cout << "Enter the size: ";
+    std::cin >> size;
+    int* arr = new int[size];
+    scan(arr, size);
+    print(arr, size);
+    int x = smax(arr, size);
+    std::cout << "Secnd max: " << x;
+    delete[] arr;
+    return 0;
+}
+
+void scan(int* arr, int size){
+    for(int i = 0; i < size; ++i){
+        arr[i] = rand()%10;
+    }
+}
+
+void print(int* arr, int size){
+    for(int i = 0; i < size; ++i){
+        std::cout << arr[i] << " ";
+    }
+     std::cout << std::endl;
+}
+
+int smax(int* arr, int size){
+    int max2 = arr[0];
+    int max1 = arr[0];
+    for(int i = 0; i < size; ++i){
+        if (max1 < arr[i]){
+            max2 = max1;
+            max1 = arr[i];
+        }
+    }
+    return max2;
+}
+
+
+Խնդիր 4. Մատրիցային փոխադրում
+Մշակեք ծրագիր, որը փոխադրում է տվյալ մատրիցը: Մատրիցայի փոխադրումը նշանակում է տողերի փոխանակում սյունակներով: Օ
+    գտատիրոջը հուշեք մուտքագրել մատրիցա, տեղափոխել այն և տպել փոխադրված մատրիցը:
+
+#include <iostream>
+
+void scan(int**, int, int);
+void print(int**, int, int);
+int** chenge(int**, int, int);
+
+
+int main() {
+    
+    int n = 0;
+    int m = 0;
+    std::cout << "Enter the n and m: ";
+    std::cin >> n >> m;
+    int** mat = new int*[n];
+    for(int i = 0; i < n; ++i){
+        mat[i] = new int[m];
+    }
+    scan(mat, n, m);
+    print(mat, n, m);
+    mat = chenge(mat, n, m);
+    print(mat, m, n);
+    
+    for(int i = 0; i < n; ++i){
+        delete[] mat[i];
+    }
+    delete[] mat;
+    return 0;
+}
+
+void scan(int** mat, int n, int m){
+    for(int i = 0; i < n; ++i){
+        for(int j = 0; j < m; ++j){
+            mat[i][j] = rand()%10;
+        }
+    }
+}
+
+void print(int** mat, int n, int m){
+    for(int i = 0; i < n; ++i){
+        for(int j = 0; j < m; ++j){
+           std::cout << mat[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+    std::cout << std::endl;
+}
+
+int** chenge(int** mat, int n, int m){
+    int** mat1 = new int*[m];
+    for(int i = 0; i < m; ++i){
+        mat1[i] = new int[n];
+    }
+    
+    for(int i = 0; i < n; ++i){
+        for(int j = 0; j < m; ++j){
+            mat1[j][i] = mat[i][j];
+        }
+    }
+    return mat1;
+}
+
+Խնդիր 5. Ինքնության մատրիցայի ստուգում
+Գրեք C++ ծրագիր, որը ստուգում է՝ արդյոք տրված քառակուսի մատրիցը նույնական մատրիցա է: 
+    Ինքնության մատրիցը քառակուսի մատրից է, որի անկյունագծով միավորներն են, իսկ այլուր՝ զրոները:
+
+#include <iostream>
+
+// Function to check if a matrix is an identity matrix
+bool isIdentityMatrix(int matrix[][100], int n) {
+    // Check if the matrix is square
+    for (int i = 0; i < n; i++) {
+        if (n != 100 && matrix[i][i] != 1) {
+            return false;
+        }
+        for (int j = 0; j < n; j++) {
+            if (i != j && matrix[i][j] != 0) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+int main() {
+    int n;
+    std::cout << "Enter the size of the square matrix: ";
+    std::cin >> n;
+
+    int matrix[100][100];
+
+    std::cout << "Enter the elements of the matrix:" << std::endl;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            std::cin >> matrix[i][j];
+        }
+    }
+
+    bool isIdentity = isIdentityMatrix(matrix, n);
+
+    if (isIdentity) {
+        std::cout << "The matrix is an identity matrix." << std::endl;
+    } else {
+        std::cout << "The matrix is not an identity matrix." << std::endl;
+    }
+
+    return 0;
+}
+
+
+Խնդիր 10. Մատրիցային տողերի տեսակավորում
+Գրեք C++ ծրագիր, որը տեսակավորում է մատրիցայի տողերը:
+
+
+    #include <iostream>
+
+void scan(int**, int, int);
+void print(int**, int, int);
+void sort(int**, int, int);
+void sort_r(int*, int);
+
+int main() {
+    
+    srand(time(NULL));
+    int n = 0;
+    int m = 0;
+    std::cout << "Enter the n and m: ";
+    std::cin >> n >> m;
+    int** mat = new int*[n];
+    for(int i = 0; i < n; ++i){
+        mat[i] = new int[m];
+    }
+    scan(mat, n, m);
+    print(mat, n, m);
+    sort(mat, n, m);
+    print(mat, n, m);
+    
+    
+    for(int i = 0; i < n; ++i){
+        delete[] mat[i];
+    }
+    delete[] mat;
+    return 0;
+}
+
+void scan(int** mat, int n, int m){
+    for(int i = 0; i < n; ++i){
+        for(int j = 0; j < m; ++j){
+            mat[i][j] = rand()%10;
+        }
+    }
+}
+
+void print(int** mat, int n, int m){
+    for(int i = 0; i < n; ++i){
+        for(int j = 0; j < m; ++j){
+           std::cout << mat[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+    std::cout << std::endl;
+}
+
+void sort(int** mat, int n, int m){
+    for(int i = 0; i < n; ++i){
+         sort_r(mat[i], m);
+    }
+}
+
+void sort_r(int* mat, int m){
+    for (int i = 0; i < m - 1; i++) {
+        for (int j = 0; j < m - i - 1; j++) {
+            if (mat[j] < mat[j + 1]) {
+                std::swap(mat[j], mat[j + 1]);
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
