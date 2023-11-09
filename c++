@@ -977,6 +977,67 @@ int main()
 }
 
 
+Հակադարձել տողը. Գրեք ռեկուրսիվ ֆունկցիա՝ տրված տողը հակադարձելու համար:
+
+#include <iostream>
+#include <cstring>
+
+void revers(char* str, int l, int r){
+    if (l >= r){
+        return;
+    }
+    std::swap(str[l], str[r]);
+    return revers(str, l + 1, r - 1);
+}
+
+int main()
+{
+    char str[] = "hayastan";
+    size_t size = strlen(str);
+    std::cout << str <<  std::endl;
+    revers(str, 0, size - 1);
+    std::cout << "revers string!" << std::endl;
+    std::cout << str << std::endl;
+    
+    return 0;
+    
+}
+
+Հաշվեք թվանշանները թվի մեջ. Իրականացրեք ֆունկցիա, որը հաշվում է դրական ամբողջ թվի թվանշանների քանակը՝ օգտագործելով ռեկուրսիա:
+
+
+
+#include <iostream>
+#include <cstring>
+
+void sum(int num, int& s){
+    if (num == 0){
+        return;
+    }
+    s += num % 10;
+    sum(num/10, s);
+}
+
+int main()
+{
+    int num = 0;
+    std::cout << "Namber: ";
+    std::cin >> num;
+    int s = 0;
+    sum(num, s);
+    std::cout << "Sum = " << s;
+    
+    return 0;
+    
+}
+
+
+
+
+
+
+
+
 
 
 
