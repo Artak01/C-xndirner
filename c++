@@ -752,13 +752,229 @@ void sort_r(int* mat, int m){
 
 
 
+Իրականացնել int add(int, int), float add(float, float), double add(double, double), char add(char, char) ֆունկցիաները։
+
+
+#include <iostream>
+
+int add(int, int);
+float add(float, float);
+double add(double, double);
+char add(char, char);
+
+int main()
+{
+    std::cout << "Resalt: " << add('0','4');
+
+    return 0;
+}
 
 
 
+int add(int a, int b){
+    return a + b;
+}
+float add(float a, float b){
+    return a + b;
+}
+double add(double a, double b){
+    return a + b;
+}
+char add(char ch1, char ch2){
+    return ch1 + ch2;
+}
 
 
 
+Իրականացրե՛ք int* max(int*, int) և int max(int, int) ֆունկցիաները, որոնցից մեկը վերադարձնում է թվերից ամենամեծը, 
+իսկ մյուսը՝ զանգվածի տարրերից ամենամեծը։
 
+#include <iostream>
+
+int* max(int*, int);
+int max(int, int);
+
+int main()
+{
+    const int size = 5; 
+    int arr[size] = {2, 4, 7, 1, 5};
+    std::cout << "Arr max: " << *(max(arr, size)) << std::endl;
+    
+    std::cout << "max: " << max(3, 5);
+    return 0;
+}
+
+int* max(int* arr, int n){
+    int Max = arr[0];
+    int k = 0;
+    for(int i = 0; i < n; ++i){
+        if (arr[i] > Max){
+            Max = arr[i];
+            k = i;
+        }
+    }
+    return arr + k;
+}
+int max(int a, int b){
+    if (a > b){
+        return a;
+    } else
+        return b;
+}
+
+
+
+Իրականացնել int* delete(int*, int) և int* delete(int*, int, int) ֆունկցիաները, 
+որոնցից 1-ը ստանում է զանգված և ջնջում այդ զանգվածի վերջին տարրը, իսկ մյուսը ստանում է զանգված և pos և ջնջում: երրորդ տարրը pos.
+
+
+#include <iostream>
+
+void print(int*, int);
+int* deletee(int*, int);
+int* deletee(int*, int, int);
+
+int main()
+{
+    int size = 5; 
+    int* arr = new int[size] {1,2,3,4,5};
+    print(arr, size);
+    int new_size = size - 1;
+    // arr = deletee(arr, size);
+    // print(arr, new_size);
+    
+    arr = deletee(arr, size, 2);
+    print(arr, new_size);
+    return 0;
+    
+}
+
+int* deletee(int* arr, int n){
+    int new_n = n - 1;
+    int* arr1 = new int[new_n];
+    for(int i = 0; i < new_n; ++i){
+        arr1[i] = arr[i];
+    }
+    
+    delete[] arr;
+    arr = arr1;
+    return arr;
+}
+int* deletee(int* arr, int n, int index){
+    int new_n = n - 1;
+    int* arr1 = new int[new_n];
+    for(int i = 0; i < index; ++i){
+        arr1[i] = arr[i];
+    }
+    int k = index + 1;
+    for(int i = index ; i < n; ++i){
+        arr1[i] = arr[k];
+        ++k;
+    }
+    delete[] arr;
+    arr = arr1;
+    return arr;
+}
+
+void print(int* arr, int n){
+    for(int i = 0; i < n; ++i){
+        std::cout << arr[i] << " ";
+    }
+    std::cout << std::endl;
+}
+
+
+Իրականացրեք int* insert(int*, int) և int* insert(int*, int, int) ֆունկցիաները, 
+որոնցից մեկը վերցնում է զանգված և արժեք և տեղադրում այդ տարրը զանգվածի վերջում, 
+իսկ մյուսը վերցնում է զանգված, արժեք և pos և տեղադրում է այդ արժեքը pos-երրորդ դիրքում:
+
+#include <iostream>
+
+void print(int*, int);
+int* insert(int*, int, int);
+int* insert(int*, int, int, int);
+
+int main()
+{
+    int size = 5; 
+    int* arr = new int[size] {1,2,3,4,5};
+    print(arr, size);
+    int new_size = size + 1;
+    arr = insert(arr, size, 1, 11);
+    print(arr, new_size);
+    
+    // arr = deletee(arr, size, 2);
+    // print(arr, new_size);
+    return 0;
+    
+}
+
+int* insert(int* arr, int n, int val){
+    int new_n = n + 1;
+    int* arr1 = new int[new_n];
+    for(int i = 0; i < n; ++i){
+        arr1[i] = arr[i];
+    }
+    arr1[n] = val;
+    
+    delete[] arr;
+    arr = arr1;
+    return arr;
+}
+int* insert(int* arr, int n, int index, int val){
+    int new_n = n + 1;
+    int* arr1 = new int[new_n];
+    for(int i = 0; i < index; ++i){
+        arr1[i] = arr[i];
+    }
+    arr1[index] = val;
+    int k = index;
+    for(int i = index + 1 ; i < new_n; ++i){
+        arr1[i] = arr[k];
+        ++k;
+    }
+    delete[] arr;
+    arr = arr1;
+    return arr;
+}
+
+void print(int* arr, int n){
+    for(int i = 0; i < n; ++i){
+        std::cout << arr[i] << " ";
+    }
+    std::cout << std::endl;
+}
+
+
+Recursive Palindrome Check: Implement a recursive function to check if a string is a palindrome.
+
+#include <iostream>
+#include <cstring>
+
+bool chack(char* str, int l, int r){
+    if (l >= r){
+        return true;
+    }
+    if (str[l] != str[r]){
+        return 0;
+    }
+    
+    return chack(str, l + 1, r - 1);
+}
+
+int main()
+{
+    char str[] = "helloolleh";
+    size_t size = strlen(str);
+
+    if (chack(str, 0, size - 1)){
+        std::cout << str << " is polindrom! " << std::endl;
+    } else 
+        std::cout << str << " is not polindrom! " << std::endl;
+   
+    return 0;
+    
+}
 
 
 
