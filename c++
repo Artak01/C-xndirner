@@ -1031,12 +1031,186 @@ int main()
     
 }
 
+strcat implemetacia
+
+
+#include <iostream>
+#include <cstring>
+
+char* my_strcat(char* dest, const char* src) {
+    if(dest == NULL && src == NULL)
+        return NULL;
+    char* tmp = dest;
+    
+    while(*tmp != 0){
+        tmp++;
+    }
+    
+    while(*src != 0){
+        *tmp = *src;
+        tmp++;
+        src++;
+    }
+    *tmp = '\0';
+    return dest;
+}
+    
+int main() {
+    char str1[20] = "Hello, ";
+    const char str2[] = "World!";
+
+    std::cout << "Before strcat: " << str1 << std::endl;
+
+    my_strcat(str1, str2);
+    std::cout << "s = " << strlen(str1);
+
+    std::cout << "After my_strcat: " << str1 << std::endl;
+
+    return 0;
+}
 
 
 
+Իրականացնել adjacent_find ֆունկցիա, որը ստանում է թվային զանգվածի սկիզբ և ավարտ, որոնում է կրկնվող հարակից տարրերը, 
+    գտնելու դեպքում վերադարձնում է՝ ցուցիչ առաջին տարրի վրա, հակառակ դեպքում վերադարնձում է  nullptr:
 
 
+#include <iostream>
 
+int* find(int*, int*);
+
+int main()
+{
+    size_t size = 6;
+    int arr[size] {1, 1, 6, 4, 7, 9};
+    int* x = find(arr, arr + size -1);
+    if (x == nullptr){
+        std::cout << "NULL";
+    }else
+    std::cout << "find =  " <<  *x;
+   
+    
+    return 0;
+}
+
+
+int* find(int* f, int* l){
+    for(f; f != l; f++){
+        if (*f == *(f + 1)){
+            return f;
+        }
+    }
+    return nullptr;
+}
+
+Գրել ֆունկցիա , որը ստանում է n ամբողջ թիվ և վերադարձնում է true, եթե n-ը  ունի ուղիղ 3 դրական բաժանարար, և  false՝ եթե չունի:
+
+    #include <iostream>
+
+bool foo(int);
+
+int main()
+{
+    int num = 0;
+    std::cout << "Number: ";
+    std::cin >> num;
+    if (foo(num)){
+        std::cout << "Yes " << num << "  has 3 positive divisors!";
+    } else
+        std::cout << "No " << num << "  hasn't 3 positive divisors!";
+    
+    return 0;
+}
+
+
+bool foo(int num){
+    int k = 0;
+    for(int i = 1; i <= num; ++i){
+        if (num % i == 0){
+            k++;
+        }
+    }
+    if (k == 3){
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+
+Իրականացնել ֆունկցիա որը որպես արգումենտ կստանա ամբողջ թիվ և կվերադարձնի True, 
+    եթե այդ թիվը 4ի աստիճան է, հակառակ դեպքում կվերադարձնի False։ 
+    Խնդիրը իրականացնել հնարավորինս օպտիմալ եղանակով։
+
+
+#include <iostream>
+
+bool isPowerOfFour(int num) {
+    if (num <= 0) {
+        return false;
+    }
+    
+    while (num > 1 && num % 4 == 0) {
+        num /= 4;
+    }
+    return num == 1;
+}
+
+int main() {
+
+    int num1 = 16;  
+    int num2 = 32;  
+
+    std::cout << num1 << " is a power of 4: " << std::boolalpha << isPowerOfFour(num1) << std::endl;
+    std::cout << num2 << " is a power of 4: " << std::boolalpha << isPowerOfFour(num2) << std::endl;
+
+    return 0;
+}
+
+
+Vahei asac xndiry
+1 2 3 4 5 6 7 8 
+1 8 2 7 3 6 4 5 
+
+    #include <iostream>
+
+int* foo(int*, int, int, int);
+void print(int*, int);
+
+int main()
+{
+    int size = 8;
+    int* arr = new int[size] {1, 2, 3, 4, 5, 6, 7, 8};
+    print(arr, size);
+    int r = size - 1;
+    arr = foo(arr, size, 0,  r);
+    print(arr, size);
+    return 0;
+}
+
+
+int* foo(int* arr, int size, int l, int r){
+    int* arr1 = new int[size];
+    
+    for(int i = 0; i < size && l != r; ++i){
+        arr1[i] = arr[l];
+        ++i;
+        arr1[i] = arr[r];
+        ++l;
+        --r;
+    }
+    delete arr;
+    arr = arr1;
+    arr1 = nullptr;
+    return arr;
+}
+
+void print(int* arr, int size){
+    for(int i = 0; i < size; ++i){
+        std::cout << arr[i] << " ";
+    }
+    std::cout << std::endl;
+}
 
 
 
